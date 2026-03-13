@@ -7,14 +7,6 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-const AXES = [
-  { key: 'searchMomentum', label: 'Search Momentum' },
-  { key: 'socialBuzz', label: 'Social Buzz' },
-  { key: 'researchBacking', label: 'Research Backing' },
-  { key: 'marketSize', label: 'Market Size' },
-  { key: 'competitionGap', label: 'Competition Gap' },
-];
-
 function buildRadarData(trend) {
   const metrics = trend?.metrics ?? {};
   const scores = trend?.scores ?? {};

@@ -4,7 +4,6 @@ import Home from './pages/Home.jsx';
 import Dashboard from './pages/Dashboard.jsx';
 import TrendDetail from './pages/TrendDetail.jsx';
 import Methodology from './pages/Methodology.jsx';
-import './index.css';
 
 export default function App() {
   return (
