@@ -32,7 +32,7 @@ const trendSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-trendSchema.index({ trendScore: -1, createdAt: -1 });
+trendSchema.index({ 'scores.trendScore': -1, createdAt: -1 });
 trendSchema.index({ trendType: 1 });
 
 export default mongoose.model('Trend', trendSchema);
