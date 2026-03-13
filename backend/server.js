@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import config from './config/index.js';
+import { connectDb } from './config/db.js';
 
 const app = express();
 
@@ -11,6 +12,7 @@ app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-app.listen(config.port, () => {
+app.listen(config.port, async () => {
+  await connectDb();
   console.log(`Server running on port ${config.port}`);
 });
