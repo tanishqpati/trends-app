@@ -77,6 +77,21 @@ vercel
 
 Set `VITE_API_URL` to your backend URL in Vercel env vars.
 
+### Backend (Render - Free)
+
+1. Go to [render.com](https://render.com) and sign up.
+2. **New** → **Blueprint**.
+3. Connect your Git repo (the one containing `render.yaml`).
+4. Render will detect `render.yaml` and create the web service.
+5. Add environment variables in the service **Environment** tab:
+   - `MONGO_URI` (required) - your MongoDB Atlas connection string
+   - `FRONTEND_URL` - your Vercel frontend URL, e.g. `https://your-app.vercel.app`
+   - `YOUTUBE_API_KEY` (optional)
+   - `REDDIT_*` (optional)
+6. Deploy. Your API will be at `https://<service-name>.onrender.com`.
+
+**Note:** Free tier spins down after ~15 min inactivity. First request may take 30–60 seconds.
+
 ### Backend (Railway / Fly.io)
 
 - **Railway:** Connect repo, set root directory to `backend`, add env vars. Uses `Procfile`.
