@@ -14,6 +14,16 @@ const config = {
   },
   youtubeApiKey: process.env.YOUTUBE_API_KEY,
   cacheTtlMs: 24 * 60 * 60 * 1000,
+  wellnessSubreddits: [
+    'IndianSkincareAddicts',
+    'IndianFitness',
+    'Supplements',
+    'nutrition',
+    'Ayurveda',
+    'Nootropics',
+    'StackAdvice',
+    'HealthyFood',
+  ],
   wellnessKeywords: [
     'ashwagandha',
     'adaptogens',
