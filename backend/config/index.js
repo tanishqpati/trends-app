@@ -14,6 +14,25 @@ const config = {
   },
   youtubeApiKey: process.env.YOUTUBE_API_KEY,
   cacheTtlMs: 24 * 60 * 60 * 1000,
+  wellnessKeywords: [
+    'ashwagandha',
+    'adaptogens',
+    'collagen peptides',
+    'probiotics',
+    'vitamin d',
+    'omega 3',
+    'turmeric',
+    'curcumin',
+    'biotin',
+    'melatonin',
+    'magnesium',
+    'berberine',
+    'astragalus',
+    'mushroom supplements',
+    'gut health',
+    'sleep supplements',
+    'stress relief',
+  ],
 };
 
 export default config;
