@@ -30,7 +30,9 @@ export default function Compare() {
     { key: 'searchGrowth', label: 'Search growth %' },
     { key: 'redditMentions', label: 'Reddit mentions' },
     { key: 'youtubeMentions', label: 'YouTube mentions' },
+    { key: 'newsMentions', label: 'News mentions' },
     { key: 'researchPapers', label: 'Research papers' },
+    { key: 'productCount', label: 'Products (Amazon+Flipkart)' },
     { key: 'competitionScore', label: 'Competition (0–1)' },
   ];
 

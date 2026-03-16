@@ -8,21 +8,37 @@ function toName(keyword) {
     .join(' ');
 }
 
+function inferCompetitionScore(reddit, youtube, productCount) {
+  const social = (reddit ?? 0) + (youtube ?? 0);
+  const productNorm = Math.min((productCount ?? 0) / 5000, 1);
+  const socialNorm = Math.min(social / 150, 1);
+  return Math.min(1, (socialNorm * 0.6 + productNorm * 0.4));
+}
+
 function buildMetricsFromRaw(rawTrends) {
-  return rawTrends.map((r) => ({
-    keyword: r.keyword,
-    name: toName(r.keyword),
-    searchGrowth: r.searchGrowth ?? 0,
-    redditMentions: r.redditMentions ?? 0,
-    youtubeMentions: r.youtubeMentions ?? 0,
-    researchPapers: r.researchPapers ?? 0,
-    competitionScore: r.competitionScore ?? 0.5,
-    evidence: {
-      googleTrendData: r.timelineData ?? r.googleTrendData ?? [],
-      redditPosts: r.redditPosts ?? [],
-      youtubeVideos: r.youtubeVideos ?? [],
-    },
-  }));
+  return rawTrends.map((r) => {
+    const reddit = r.redditMentions ?? 0;
+    const youtube = r.youtubeMentions ?? 0;
+    const productCount = r.productCount ?? 0;
+    const competitionScore = r.competitionScore ?? inferCompetitionScore(reddit, youtube, productCount);
+    return {
+      keyword: r.keyword,
+      name: toName(r.keyword),
+      searchGrowth: r.searchGrowth ?? 0,
+      redditMentions: reddit,
+      youtubeMentions: youtube,
+      researchPapers: r.researchPapers ?? 0,
+      newsMentions: r.newsMentions ?? 0,
+      productCount,
+      competitionScore,
+      evidence: {
+        googleTrendData: r.timelineData ?? r.googleTrendData ?? [],
+        redditPosts: r.redditPosts ?? [],
+        youtubeVideos: r.youtubeVideos ?? [],
+        newsArticles: r.newsArticles ?? [],
+      },
+    };
+  });
 }
 
 export function scoreTrends(rawTrends) {
@@ -62,6 +78,8 @@ export function scoreTrends(rawTrends) {
         redditMentions: m.redditMentions,
         youtubeMentions: m.youtubeMentions,
         researchPapers: m.researchPapers,
+        newsMentions: m.newsMentions ?? 0,
+        productCount: m.productCount ?? 0,
         competitionScore: m.competitionScore,
       },
       scores: {

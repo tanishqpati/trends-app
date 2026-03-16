@@ -9,7 +9,9 @@ const trendSchema = new mongoose.Schema(
       redditMentions: { type: Number, default: 0 },
       youtubeMentions: { type: Number, default: 0 },
       researchPapers: { type: Number, default: 0 },
-      competitionScore: { type: Number, default: 0 },
+      newsMentions: { type: Number, default: 0 },
+      productCount: { type: Number, default: 0 },
+      competitionScore: { type: Number, default: 0.5 },
     },
     scores: {
       velocityScore: { type: Number, default: 0 },
@@ -27,6 +29,7 @@ const trendSchema = new mongoose.Schema(
       googleTrendData: Array,
       redditPosts: Array,
       youtubeVideos: Array,
+      newsArticles: Array,
     },
   },
   { timestamps: true }

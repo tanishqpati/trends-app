@@ -28,6 +28,18 @@ export default function SignalBreakdown({ trend }) {
       description: 'PubMed publications in last 12 months',
     },
     {
+      label: 'News Mentions',
+      value: metrics.newsMentions ?? 0,
+      suffix: '',
+      description: 'News articles mentioning the trend',
+    },
+    {
+      label: 'Product Count',
+      value: metrics.productCount ?? 0,
+      suffix: '',
+      description: 'Amazon/Flipkart products (estimate)',
+    },
+    {
       label: 'Velocity Score',
       value: Math.round((scores.velocityScore ?? 0) * 100),
       suffix: '/100',

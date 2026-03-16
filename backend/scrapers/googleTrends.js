@@ -55,11 +55,11 @@ export async function fetchKeywordTrend(keyword) {
   }
 }
 
-export async function fetchAllWellnessTrends() {
-  const keywords = config.wellnessKeywords;
+export async function fetchAllWellnessTrends(keywords) {
+  const kws = keywords ?? config.wellnessKeywords;
   const results = [];
 
-  for (const keyword of keywords) {
+  for (const keyword of kws) {
     const result = await fetchKeywordTrend(keyword);
     results.push(result);
   }

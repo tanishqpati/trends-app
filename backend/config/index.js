@@ -13,6 +13,8 @@ const config = {
     password: process.env.REDDIT_PASSWORD,
   },
   youtubeApiKey: process.env.YOUTUBE_API_KEY,
+  newsApiKey: process.env.NEWS_API_KEY,
+  serpApiKey: process.env.SERP_API_KEY,
   cacheTtlMs: 24 * 60 * 60 * 1000,
   wellnessSubreddits: [
     'IndianSkincareAddicts',
