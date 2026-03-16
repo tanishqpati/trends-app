@@ -28,3 +28,8 @@ export async function getOpportunities() {
   const { data } = await api.get('/opportunities');
   return data;
 }
+
+export async function getPipelineStatus() {
+  const { data } = await api.get('/pipeline/status');
+  return data;
+}
