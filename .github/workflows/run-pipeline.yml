@@ -1,0 +1,22 @@
+name: Run Pipeline
+
+on:
+  schedule:
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger pipeline
+        run: |
+          response=$(curl -s -w "\n%{http_code}" -X POST "${{ secrets.BACKEND_URL }}/api/pipeline/run" --max-time 300)
+          http_code=$(echo "$response" | tail -n1)
+          echo "Response code: $http_code"
+          if [ "$http_code" -ge 200 ] && [ "$http_code" -lt 300 ]; then
+            echo "Pipeline triggered successfully"
+          else
+            echo "Pipeline trigger failed"
+            exit 1
+          fi
