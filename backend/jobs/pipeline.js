@@ -7,6 +7,7 @@ import { scoreTrends } from '../scoring/trendScore.js';
 import { classifyTrendType } from '../scoring/fadDetection.js';
 import { generateOpportunityBrief } from '../utils/briefGenerator.js';
 import Trend from '../models/Trend.js';
+import PipelineRun from '../models/PipelineRun.js';
 import { invalidateTrendCache } from '../services/trendService.js';
 
 function mergeByKeyword(gt, reddit, youtube, pubmed) {
@@ -45,8 +46,10 @@ function mergeByKeyword(gt, reddit, youtube, pubmed) {
 
 export async function runPipeline() {
   const keywords = config.wellnessKeywords;
+  await PipelineRun.create({ status: 'running' });
 
-  const [gt, reddit, youtube, pubmed] = await Promise.all([
+  try {
+    const [gt, reddit, youtube, pubmed] = await Promise.all([
     fetchAllWellnessTrends(),
     fetchAllRedditData(keywords),
     fetchAllYouTubeData(keywords),
@@ -70,9 +73,14 @@ export async function runPipeline() {
     };
   });
 
-  await Trend.deleteMany({});
-  await Trend.insertMany(trendsToStore);
-  invalidateTrendCache();
+    await Trend.deleteMany({});
+    await Trend.insertMany(trendsToStore);
+    invalidateTrendCache();
 
-  return trendsToStore.length;
+    await PipelineRun.create({ status: 'success', trendsStored: trendsToStore.length });
+    return trendsToStore.length;
+  } catch (err) {
+    await PipelineRun.create({ status: 'error', errorMessage: err.message });
+    throw err;
+  }
 }
