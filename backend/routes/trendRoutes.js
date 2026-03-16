@@ -5,6 +5,7 @@ const router = Router();
 
 router.get('/trends', trendController.getTrends);
 router.get('/trends/top', trendController.getTopTrends);
+router.get('/trends/:id/history', trendController.getTrendHistory);
 router.get('/trends/:id', trendController.getTrendById);
 router.get('/opportunities', trendController.getOpportunities);
 

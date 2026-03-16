@@ -1,4 +1,5 @@
 import Trend from '../models/Trend.js';
+import TrendSnapshot from '../models/TrendSnapshot.js';
 import config from '../config/index.js';
 import * as cache from './cacheService.js';
 
@@ -43,6 +44,14 @@ export async function getOpportunities() {
     .lean();
   cache.set(CACHE_KEY_OPPORTUNITIES, trends, config.cacheTtlMs);
   return trends;
+}
+
+export async function getTrendHistory(keyword) {
+  const snapshots = await TrendSnapshot.find({ keyword })
+    .sort({ recordedAt: -1 })
+    .limit(30)
+    .lean();
+  return snapshots.reverse();
 }
 
 export function invalidateTrendCache() {

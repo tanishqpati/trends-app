@@ -4,6 +4,7 @@ import { getTrendById } from '../services/api';
 import TrendRadarChart from '../components/RadarChart';
 import SignalBreakdown from '../components/SignalBreakdown';
 import OpportunityBrief from '../components/OpportunityBrief';
+import HistoryChart from '../components/HistoryChart';
 
 export default function TrendDetail() {
   const { id } = useParams();
@@ -76,8 +77,12 @@ export default function TrendDetail() {
       <div className="mb-8">
         <OpportunityBrief brief={trend.opportunityBrief} />
       </div>
+      <div className="mb-8">
+        <HistoryChart trendId={trend._id} />
+      </div>
       {(trend.evidence?.redditPosts?.length > 0 ||
-        trend.evidence?.youtubeVideos?.length > 0) && (
+        trend.evidence?.youtubeVideos?.length > 0 ||
+        trend.evidence?.newsArticles?.length > 0) && (
         <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
           <h3 className="mb-4 text-lg font-semibold text-gray-900 dark:text-gray-100">Evidence</h3>
           <div className="space-y-4">
@@ -94,13 +99,25 @@ export default function TrendDetail() {
             ))}
             {trend.evidence.youtubeVideos?.slice(0, 5).map((v, i) => (
               <a
-                key={i}
+                key={`yt-${i}`}
                 href={v.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block text-sm text-indigo-600 hover:underline dark:text-indigo-400"
               >
                 {v.title}
+              </a>
+            ))}
+            {trend.evidence.newsArticles?.slice(0, 5).map((a, i) => (
+              <a
+                key={`news-${i}`}
+                href={a.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-sm text-indigo-600 hover:underline dark:text-indigo-400"
+              >
+                {a.title}
+                {a.source ? ` (${a.source})` : ''}
               </a>
             ))}
           </div>

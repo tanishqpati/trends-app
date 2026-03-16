@@ -39,3 +39,14 @@ export async function getOpportunities(_req, res) {
     res.status(500).json({ error: err.message });
   }
 }
+
+export async function getTrendHistory(req, res) {
+  try {
+    const trend = await trendService.getTrendById(req.params.id);
+    if (!trend) return res.status(404).json({ error: 'Trend not found' });
+    const history = await trendService.getTrendHistory(trend.keyword);
+    res.json(history);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+}
