@@ -78,7 +78,11 @@ export default function Dashboard() {
         <h2 className="mb-2 text-lg font-semibold text-gray-900 dark:text-gray-100">
           Failed to load trends
         </h2>
-        <p className="mb-6 max-w-md text-center text-gray-600 dark:text-gray-400">{error}</p>
+        <p className="mb-6 max-w-md text-center text-gray-600 dark:text-gray-400">
+          {error?.toLowerCase?.().includes('timeout')
+            ? 'The server may be waking up (free tier). Please try again in a moment.'
+            : error}
+        </p>
         <button
           type="button"
           onClick={() => window.location.reload()}
