@@ -2,6 +2,24 @@
 
 A MERN application that detects emerging wellness trends in India 3–6 months before mainstream adoption by analyzing signals from Google Trends, Reddit, YouTube, and PubMed. Produces founder-ready opportunity briefs for D2C market opportunities in the ₹10Cr–₹50Cr range.
 
+**Live Demo:** [https://wellnesstrends.vercel.app/](https://wellnesstrends.vercel.app/)
+
+## Screenshots
+
+| Home | Dashboard |
+|------|-----------|
+| ![Home - Light](docs/screenshots/home-light.png) | ![Dashboard](docs/screenshots/dashboard.png) |
+| ![Home - Dark](docs/screenshots/home-dark.png) | ![Featured Trend](docs/screenshots/featured-trend.png) |
+
+| Trend Detail | Compare Trends |
+|--------------|----------------|
+| ![Trend Detail](docs/screenshots/trend-detail.png) | ![Compare](docs/screenshots/compare.png) |
+| ![Opportunity Brief](docs/screenshots/opportunity-brief.png) | ![Compare Metrics](docs/screenshots/compare-metrics.png) |
+
+| Methodology |
+|-------------|
+| ![Methodology](docs/screenshots/methodology.png) |
+
 ## System Design
 
 The application follows a data pipeline architecture: **collectSignals → extractKeywords → calculateMetrics → scoreTrends → detectFads → generateOpportunityBrief → storeTrends**. Data is collected from four APIs (Google Trends, Reddit JSON API, YouTube Data API v3, PubMed E-utilities), merged by keyword, and normalized. Each trend receives a composite score from five weighted factors: Search Velocity (35%), Social Growth (25%), Research Backing (20%), Competition Inverse (10%), and Market Potential (10%). A fad classifier distinguishes short-lived spikes from sustained multi-platform trends. The pipeline runs automatically every 24 hours via node-cron; results are cached for 24 hours to minimize DB load. The frontend serves a Linear/Notion-style dashboard with trend cards, radar charts, and opportunity briefs.
