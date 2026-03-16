@@ -28,9 +28,9 @@ export default function TrendDetail() {
 
   if (error || !trend) {
     return (
-      <div className="rounded-lg border border-red-200 bg-red-50 p-4 text-red-700">
+      <div className="rounded-lg border border-red-200 bg-red-50 p-4 text-red-700 dark:border-red-900 dark:bg-red-950/50 dark:text-red-300">
         {error || 'Trend not found'}
-        <Link to="/dashboard" className="ml-4 text-indigo-600 hover:underline">
+        <Link to="/dashboard" className="ml-4 text-indigo-600 hover:underline dark:text-indigo-400">
           Back to Dashboard
         </Link>
       </div>
@@ -43,33 +43,33 @@ export default function TrendDetail() {
     <div>
       <Link
         to="/dashboard"
-        className="mb-6 inline-block text-sm text-indigo-600 hover:underline"
+        className="mb-6 inline-block text-sm text-indigo-600 hover:underline dark:text-indigo-400"
       >
         &larr; Back to Dashboard
       </Link>
       <div className="mb-6 flex flex-wrap items-start justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-semibold text-gray-900">{trend.name}</h1>
+          <h1 className="text-3xl font-semibold text-gray-900 dark:text-gray-100">{trend.name}</h1>
           <span
             className={`mt-2 inline-block rounded-full px-3 py-1 text-sm font-medium ${
               trend.trendType === 'FAD'
-                ? 'bg-amber-100 text-amber-800'
-                : 'bg-emerald-100 text-emerald-800'
+                ? 'bg-amber-100 text-amber-800 dark:bg-amber-900/50 dark:text-amber-200'
+                : 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-200'
             }`}
           >
             {trend.trendType === 'FAD' ? 'Fad' : 'Real Trend'}
           </span>
         </div>
         <div className="flex items-baseline gap-2">
-          <span className="text-4xl font-bold text-gray-900">{scorePercent}</span>
-          <span className="text-gray-500">/ 100</span>
+          <span className="text-4xl font-bold text-gray-900 dark:text-gray-100">{scorePercent}</span>
+          <span className="text-gray-500 dark:text-gray-400">/ 100</span>
         </div>
       </div>
       <div className="mb-8 grid gap-6 lg:grid-cols-2">
-        <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+        <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
           <TrendRadarChart trend={trend} />
         </div>
-        <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+        <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
           <SignalBreakdown trend={trend} />
         </div>
       </div>
@@ -78,8 +78,8 @@ export default function TrendDetail() {
       </div>
       {(trend.evidence?.redditPosts?.length > 0 ||
         trend.evidence?.youtubeVideos?.length > 0) && (
-        <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-          <h3 className="mb-4 text-lg font-semibold text-gray-900">Evidence</h3>
+        <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+          <h3 className="mb-4 text-lg font-semibold text-gray-900 dark:text-gray-100">Evidence</h3>
           <div className="space-y-4">
             {trend.evidence.redditPosts?.slice(0, 5).map((p, i) => (
               <a
@@ -87,7 +87,7 @@ export default function TrendDetail() {
                 href={p.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block text-sm text-indigo-600 hover:underline"
+                className="block text-sm text-indigo-600 hover:underline dark:text-indigo-400"
               >
                 {p.title}
               </a>
@@ -98,7 +98,7 @@ export default function TrendDetail() {
                 href={v.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block text-sm text-indigo-600 hover:underline"
+                className="block text-sm text-indigo-600 hover:underline dark:text-indigo-400"
               >
                 {v.title}
               </a>
