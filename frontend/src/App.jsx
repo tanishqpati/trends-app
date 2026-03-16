@@ -4,6 +4,7 @@ import Home from './pages/Home.jsx';
 import Dashboard from './pages/Dashboard.jsx';
 import TrendDetail from './pages/TrendDetail.jsx';
 import Compare from './pages/Compare.jsx';
+import Settings from './pages/Settings.jsx';
 import Methodology from './pages/Methodology.jsx';
 
 export default function App() {
@@ -15,6 +16,7 @@ export default function App() {
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="trends/:id" element={<TrendDetail />} />
           <Route path="compare" element={<Compare />} />
+          <Route path="settings" element={<Settings />} />
           <Route path="methodology" element={<Methodology />} />
         </Route>
       </Routes>

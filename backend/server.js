@@ -4,6 +4,7 @@ import config from './config/index.js';
 import { connectDb } from './config/db.js';
 import trendRoutes from './routes/trendRoutes.js';
 import pipelineRoutes from './routes/pipelineRoutes.js';
+import keywordRoutes from './routes/keywordRoutes.js';
 import { registerCron } from './jobs/cron.js';
 
 const app = express();
@@ -17,6 +18,7 @@ app.get('/api/health', (_req, res) => {
 
 app.use('/api', trendRoutes);
 app.use('/api', pipelineRoutes);
+app.use('/api', keywordRoutes);
 
 app.listen(config.port, async () => {
   await connectDb();

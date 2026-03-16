@@ -32,6 +32,12 @@ export default function Navbar() {
               Compare
             </Link>
             <Link
+              to="/settings"
+              className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
+            >
+              Settings
+            </Link>
+            <Link
               to="/methodology"
               className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
             >
