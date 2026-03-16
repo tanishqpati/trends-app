@@ -45,24 +45,24 @@ export default function SignalBreakdown({ trend }) {
 
   return (
     <div className="space-y-4">
-      <h3 className="text-lg font-semibold text-gray-900">Signal Breakdown</h3>
+      <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Signal Breakdown</h3>
       <div className="space-y-3">
         {signals.map((s) => (
           <div key={s.label}>
             <div className="mb-1 flex justify-between text-sm">
-              <span className="font-medium text-gray-700">{s.label}</span>
-              <span className="text-gray-600">
+              <span className="font-medium text-gray-700 dark:text-gray-300">{s.label}</span>
+              <span className="text-gray-600 dark:text-gray-400">
                 {s.value}
                 {s.suffix}
               </span>
             </div>
-            <div className="h-2 overflow-hidden rounded-full bg-gray-200">
+            <div className="h-2 overflow-hidden rounded-full bg-gray-200 dark:bg-gray-600">
               <div
                 className="h-full rounded-full bg-indigo-600 transition-all"
                 style={{ width: `${(s.value / maxVal) * 100}%` }}
               />
             </div>
-            <p className="mt-0.5 text-xs text-gray-500">{s.description}</p>
+            <p className="mt-0.5 text-xs text-gray-500 dark:text-gray-400">{s.description}</p>
           </div>
         ))}
       </div>
